@@ -1,0 +1,26 @@
+name: geomx_env
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - r-base=4.2.2
+  - libopenblas
+  - r-dplyr
+  - r-tidyverse
+  - r-data.table
+  - r-pheatmap
+  - r-ggplot2
+  - r-rcolorbrewer
+  - r-ggally
+  - r-scales
+  - r-msigdbr
+  - r-circlize
+  - r-writexl
+  - bioconductor-gsva
+  - bioconductor-summarizedexperiment
+  - bioconductor-deseq2
+  - bioconductor-degreport=1.34.0
+  - bioconductor-fgsea
+  - bioconductor-complexheatmap
+  - bioconductor-dose
+  - bioconductor-org.hs.eg.db
