@@ -103,12 +103,23 @@ dds_clustering <- degPatterns(dds_clustering, metadata = meta, time = "tissue", 
 # reorder the plot to match group order with layout
 # extract the data from the plot object
 plot_data <- dds_clustering$plot$data
-# extract group numbers from the 'title' column using regex
-plot_data$group_number <- as.numeric(gsub("Group:\\s*(\\d+)\\s*-.*", "\\1", plot_data$title))
-# reorder the 'title' column based on the numeric group number
-plot_data$title <- factor(plot_data$title, levels = plot_data$title[order(plot_data$group_number)] %>% unique)
-# remove the temporary 'group_number' column
-plot_data$group_number <- NULL
+# modify group names and order to facilitate results presentation in the publication (upregulation first, downregulation second)
+plot_data <- plot_data %>%
+  mutate(
+    group_num = as.numeric(gsub("Group:\\s*(\\d+)\\s*-.*", "\\1", plot_data$title)),
+    new_group = case_when(
+      group_num == 2 ~ 1,  # Former Group 2 → HTG-G1
+      group_num == 1 ~ 2   # Former Group 1 → HTG-G2
+    ),
+    titles_corrected = str_replace(title, "Group:\\s*\\d+", paste0("HTG-G", new_group))
+  )
+
+# reorder the 'title' column based on the modified groups
+plot_data$title <- factor(plot_data$titles_corrected, levels = plot_data$titles_corrected[order(plot_data$new_group)] %>% unique) #plot_data$titles_corrected
+plot_data$group_num <- NULL
+plot_data$new_group <- NULL
+plot_data$titles_corrected <- NULL
+
 # update the plot data in the object
 dds_clustering$plot$data <- plot_data
 
@@ -116,6 +127,12 @@ dds_clustering$plot$data <- plot_data
 modified_plot <- dds_clustering$plot +
   aes(col = tissue) +
   scale_color_manual(values=c("#FDE725", "#21908C", "#3B528B"))
+
+# modify title font
+modified_plot <- modified_plot +
+theme(
+  strip.text = element_text(size = 15)
+)
 
 # remove previous line (only way to make it work)
 modified_plot$layers[[3]] <- ggplot2::geom_smooth(

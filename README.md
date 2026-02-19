@@ -8,7 +8,8 @@ This repository contains the code required to reproduce the end-to-end analyses 
 > stage-specific biomarkers of clinical relevance.*
 <br>
 
-
+# **$${\color{red}Update \space journal \space  once \space  published}$$**
+# **$${\color{red}Include \space excel \space  file \space  link}$$**
 
 
 # Data Availability
@@ -111,7 +112,7 @@ If you wish to reproduce gprofiler2 pathway enrichment and ORSUM summarization, 
 
 ## 1. Create the Environment
 ```
-conda create --file gprofiler2_ORSUM/gprofiler2_orsum.yml
+conda create --file gprofiler2_orsum.yml
 conda activate gprof_orsum_env
 ```
 ## 2. Input Requirements

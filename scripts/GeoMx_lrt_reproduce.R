@@ -116,7 +116,7 @@ for (i in segment_manipulated_levels){
           group_num == 20                       ~ group_num - 2,
           TRUE                                  ~ group_num
         ),
-        titles_corrected = str_replace(title, "Group:\\s*\\d+", paste0("Group: ", new_group))
+        titles_corrected = str_replace(title, "Group:\\s*\\d+", paste0("Ker-G", new_group))
       )
     plot_data$title <- plot_data$titles_corrected
   } else if (i == "Macrophages") {
@@ -129,13 +129,13 @@ for (i in segment_manipulated_levels){
           group_num == 6                        ~ group_num - 4,
           TRUE                                  ~ group_num
         ),
-        titles_corrected = str_replace(title, "Group:\\s*\\d+", paste0("Group: ", new_group))
+        titles_corrected = str_replace(title, "Group:\\s*\\d+", paste0("Mac-G", new_group))
       )
     plot_data$title = plot_data$titles_corrected
   }
   
   # extract group numbers from the 'title' column using regex
-  plot_data$group_number <- as.numeric(gsub("Group:\\s*(\\d+)\\s*-.*", "\\1", plot_data$title))
+  plot_data$group_number <- as.numeric(gsub(".*:\\s*(\\d+)\\s*-.*", "\\1", plot_data$title))
   # reorder the 'title' column based on the numeric group number
   plot_data$title <- factor(plot_data$title, levels = plot_data$title[order(plot_data$group_number)] %>% unique)
   # remove the temporary 'group_number' column
@@ -149,6 +149,19 @@ for (i in segment_manipulated_levels){
     aes(col = tissue) +
     scale_color_manual(values=c("#FDE725", "#5DC863", "#21908C", "#3B528B", "#440154"))
   
+  # change font size
+  if (i == "PanCK"){
+    modified_plot <- modified_plot +
+    theme(
+      strip.text = element_text(size = 12)
+    )
+  } else if (i == "Macrophages") {
+        modified_plot <- modified_plot +
+    theme(
+      strip.text = element_text(size = 24)
+    )
+  }
+
   # include trend line
   modified_plot$layers[[3]] <- ggplot2::geom_smooth(
     mapping = ggplot2::aes(x = tissue, y = value, group = 1),
@@ -163,6 +176,7 @@ for (i in segment_manipulated_levels){
     color = "black", 
     se = FALSE, 
     size = 1.5)
+
   # save plot
   plot_name <- paste0("Publication_LRT_DEGclustering_", i,".png")
   ggsave(file.path(path_to_output, plot_name),
