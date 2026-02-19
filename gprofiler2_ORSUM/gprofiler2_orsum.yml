@@ -1,0 +1,13 @@
+name: gprof_orsum_env
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - r-base=4.0.0
+  - bioconductor-orsum=1.8.0
+  - r-dplyr
+  - r-ggplot2
+  - r-openxlsx
+  - r-gprofiler2
+  - r-glue
+  - r-gtools
