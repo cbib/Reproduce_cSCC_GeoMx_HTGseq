@@ -59,7 +59,7 @@ cd cSCC_continuum_analyses
 This folder contains the processed count matrices and `Heatmaps_gene_list.xlsx` file.
 
 ```
-wget --no-check-certificate http://services.cbib.u-bordeaux.fr/cSCC_gene_tables/data/
+wget --no-check-certificate -r -np -nH --cut-dirs=1 -R "index.html*" http://services.cbib.u-bordeaux.fr/cSCC_gene_tables/data/
 ```
 
 ## 3. Create the Conda Environment
