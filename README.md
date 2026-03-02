@@ -5,11 +5,8 @@ This repository contains the code required to reproduce the end-to-end analyses 
 > Oterino-Sogo, S. & Naji, F. et al.
 > *Spatial and bulk transcriptomic profiling defines the molecular
 > evolution of cutaneous squamous cell carcinoma and reveals
-> stage-specific biomarkers of clinical relevance.*
+> stage-specific biomarkers of clinical relevance. *
 <br>
-
-# **$${\color{red}Update \space journal \space  once \space  published}$$**
-# **$${\color{red}Include \space excel \space  file \space  link}$$**
 
 
 # Data Availability
@@ -45,9 +42,9 @@ This section describes how to reproduce:
 
 ## Required Input Files
 
-1.  Download the processed datasets from GEO (see **Data Availability**).
+1.  We provide a link to download the input files from our local storage to agilize reproducibility. You may also download the processed datasets from GEO (see **Data Availability**).
 2.  Place all required input files in the directory specified by `path_to_input`.
-3.  Download the file: Heatmaps_gene_list.xlsx and place it in the same input directory. ############################################################################
+3.  Download the file: `Heatmaps_gene_list.xlsx` and place it in the same input directory.
 
 ⚠️ The scripts will not run without these files.
 
@@ -57,27 +54,34 @@ git clone https://github.com/cbib/cSCC_continuum_analyses
 cd cSCC_continuum_analyses
 ``` 
 
-## 2. Create the Conda Environment
+## 2. Download processed files
+
+This folder contains the processed count matrices and `Heatmaps_gene_list.xlsx` file.
+
+```
+wget --no-check-certificate http://services.cbib.u-bordeaux.fr/cSCC_gene_tables/data/
+```
+
+## 3. Create the Conda Environment
 ```
 conda create --file geomx.yml
 conda activate geomx_env
 ```
 
-## 3. Configure Input and Output Paths
+## 4. Configure Input and Output Paths
 
 Edit the following scripts:
 
 -   `GeoMx_lrt_reproduce.R`
 -   `HTGseq_lrt_reproduce.R`
 
-Modify the variables:
+Update the variables:
 
 * path_to_input
 * path_to_output
 
 
-
-## 4. Run the Analyses
+## 5. Run the Analyses
 ```
 Rscript GeoMx_lrt_reproduce.R
 Rscript HTGseq_lrt_reproduce.R
