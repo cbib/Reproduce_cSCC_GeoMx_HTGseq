@@ -15,6 +15,7 @@ library(ggplot2)
 library(DOSE)
 library(org.Hs.eg.db)
 library(GGally)
+library(writexl)
 
 # directories
 # path_to_input <- "/input/data/folder/"
@@ -181,8 +182,8 @@ write.csv(gene_df, file.path(path_to_output, file_name), row.names = FALSE)
 
 # store results in different list items
 list_sig_results = list()
-
-for (stage in unique(meta$tissue)){
+stages <- unique(meta$tissue)
+for (stage in stages){
   # create a temporary variable to loop through
   meta$tissue_alternative = ifelse(meta$tissue == stage, stage, "rest")
   meta$tissue_alternative = factor(meta$tissue_alternative, levels = c(stage, "rest"))
@@ -207,18 +208,11 @@ for (stage in unique(meta$tissue)){
 
 # create dir for results
 dir.create(file.path(path_to_output, "DE_genes_by_stage"), showWarnings = FALSE)
-
-# combine results
-combined_results <- dplyr::bind_rows(
-  lapply(names(list_sig_results), function(stage) {
-    df <- list_sig_results[[stage]]
-    df$stage <- stage
-    df
-  })
-)
+# remove "/" from "AK/In situ" to be able to save the xlsx files
+names(list_sig_results) <- gsub("/", "_", stages)
 
 # write results into a single Excel document
-write.csv(combined_results, file.path(path_to_output, "DE_genes_by_stage", "HTGseq_DE_stage.csv"))
+write_xlsx(list_sig_results, file.path(path_to_output, "DE_genes_by_stage", "HTGseq_DE_stage.xlsx"))
 
 ##############################################
 ############## PATHWAY ANALYSES ##############

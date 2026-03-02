@@ -15,6 +15,7 @@ library(ggplot2)
 library(DOSE)
 library(org.Hs.eg.db)
 library(GGally)
+library(writexl)
 
 # directories
 # path_to_input <- "/input/data/folder/"
@@ -588,7 +589,10 @@ for (i in segment_manipulated_levels){
 
 # create dir for results
 dir.create(file.path(path_to_output, "DE_genes_by_stage"), showWarnings = FALSE)
+# remove "/" from "AK/In situ" to be able to save the xlsx files
+names(list_sig_results[["Macrophages"]]) <- gsub("/", "_", groups)
+names(list_sig_results[["PanCK"]]) <- gsub("/", "_", groups)
 
 # write results into a single Excel document
-write.csv(list_sig_results[["Macrophages"]], file.path(path_to_output, "DE_genes_by_stage", "Macrophages_DE_stage.csv"))
-write.csv(list_sig_results[["PanCK"]], file.path(path_to_output, "DE_genes_by_stage", "PanCK_DE_stage.csv"))
+write_xlsx(list_sig_results[["Macrophages"]],file.path(path_to_output, "DE_genes_by_stage", "Macrophages_DE_stage.xlsx"))
+write_xlsx(list_sig_results[["PanCK"]], file.path(path_to_output, "DE_genes_by_stage", "PanCK_DE_stage.xlsx"))
