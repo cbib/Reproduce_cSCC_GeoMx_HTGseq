@@ -18,10 +18,8 @@ library(GGally)
 library(writexl)
 
 # directories
-# path_to_input <- "/input/data/folder/"
-# path_to_output <- "/ouptut/results/folder/"
-path_to_input <- "/home/soterinosogo/2026.01.Reproduce_GeoMx/data/"
-path_to_output <- "/home/soterinosogo/2026.01.Reproduce_GeoMx/results/"
+path_to_input <- "./data/"
+path_to_output <- "./results/"
 
 # build color coding dataframe
 patient_id <- c("S2210959", "S2210105", "S2210320",
