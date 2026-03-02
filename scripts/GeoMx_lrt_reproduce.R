@@ -18,10 +18,8 @@ library(GGally)
 library(writexl)
 
 # directories
-# path_to_input <- "/input/data/folder/"
-# path_to_output <- "/ouptut/results/folder/"
-path_to_input <- "/home/soterinosogo/2026.01.Reproduce_GeoMx/data/"
-path_to_output <- "/home/soterinosogo/2026.01.Reproduce_GeoMx/results/"
+path_to_input <- "./data/"
+path_to_output <- "./results/"
 
 # load data and metadata
 data <- read.csv(file.path(path_to_input, "21019220628_rawdata.csv"), header = T, row.names = 1, sep = ";")
