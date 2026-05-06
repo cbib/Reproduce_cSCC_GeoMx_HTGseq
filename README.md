@@ -154,11 +154,8 @@ Parameters:
 
 # Contact and Support
 
-The code in this repository was developed by
-**Sergio Oterino-Sogo**
+The code in this repository was developed by Sergio Oterino Sogo.
 
-LinkedIn:
-https://www.linkedin.com/in/sergio-oterino-sogo-phd-181962164/
+LinkedIn: [Sergio Oterino Sogo, PhD](https://www.linkedin.com/in/sergio-oterino-sogo-phd-181962164/).
 
-For reproducibility issues, please open a GitHub issue:
-https://github.com/cbib/cSCC_continuum_analyses/issues
+For reproducibility issues, please [open a GitHub issue](https://github.com/cbib/cSCC_continuum_analyses/issues).
