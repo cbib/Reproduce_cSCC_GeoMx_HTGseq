@@ -5,7 +5,9 @@ This repository contains the code required to reproduce the end-to-end analyses 
 > Oterino-Sogo, S. & Naji, F. et al.
 > *Spatial and bulk transcriptomic profiling defines the molecular
 > evolution of cutaneous squamous cell carcinoma and reveals
-> stage-specific biomarkers of clinical relevance. *
+> stage-specific biomarkers of clinical relevance.*
+> bioRxiv (2026). https://doi.org/10.64898/2026.04.30.721943
+
 <br>
 
 
